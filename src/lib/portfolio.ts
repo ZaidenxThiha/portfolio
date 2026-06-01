@@ -1,0 +1,115 @@
+/** Structured portfolio content for Thiha Aung, sourced from CV. */
+
+export interface TimelineItem {
+  title: string;
+  org: string;
+  period: string;
+  points: string[];
+}
+
+export interface ProjectItem {
+  title: string;
+  meta?: string;
+  points: string[];
+}
+
+export interface SkillRating {
+  name: string;
+  level: number; // 1–5, from CV star ratings
+}
+
+export const ABOUT = {
+  name: "Thiha Aung",
+  role: "AI Engineer & Data Analyst",
+  status: "Final-year Computer Science student",
+  location: "Ho Chi Minh City, Vietnam",
+  summary:
+    "Final-year Computer Science student at Ton Duc Thang University and an aspiring AI Engineer & Data Analyst based in Ho Chi Minh City. I started out as a Technical Engineer — diagnosing hardware, software, and network issues and keeping systems running with minimal downtime — and I’m now channeling that problem-solving mindset into machine learning, data analysis, and AI-powered tools.",
+};
+
+export const EDUCATION: TimelineItem[] = [
+  {
+    title: "BSc, Computer Science",
+    org: "Ton Duc Thang University, Ho Chi Minh City",
+    period: "Sept 2023 – Present",
+    points: ["Final year, focused on AI, data analysis, and software engineering."],
+  },
+  {
+    title: "BE, Electronics (5th year)",
+    org: "Technological University, Kyaukse",
+    period: "Dec 2014 – Dec 2019",
+    points: [
+      "Capstone: Elevator Control System — PLC programming for floor selection and safety features.",
+    ],
+  },
+  {
+    title: "Matriculation",
+    org: "No.8 Basic Education High School, Mandalay",
+    period: "",
+    points: [],
+  },
+];
+
+export const EXPERIENCE: TimelineItem[] = [
+  {
+    title: "Technical Engineer",
+    org: "Thazin & Cherry English Training Centre, Mandalay",
+    period: "Jan 2020 – Jan 2023",
+    points: [
+      "Diagnosed and resolved hardware, software, and connectivity issues, minimizing downtime.",
+      "Enhanced network infrastructure for reliable, day-to-day educational operations.",
+    ],
+  },
+  {
+    title: "IT Support",
+    org: "FPT IS Vietnam",
+    period: "Apr 2025 – Jun 2025",
+    points: ["Provided technical support and troubleshooting across systems and end-users."],
+  },
+];
+
+export const PROJECTS: ProjectItem[] = [
+  {
+    title: "Elevator Control System",
+    meta: "Technological University · PLC",
+    points: [
+      "Programmed and tested a PLC managing floor selection and safety features.",
+      "Collaborated in a team to integrate and optimize the system for reliable performance.",
+    ],
+  },
+  {
+    title: "AI & Data Explorations",
+    meta: "Ongoing · CS studies",
+    points: [
+      "Building data-analysis pipelines and training machine-learning models.",
+      "Experimenting with LLM-powered tools and data visualization.",
+    ],
+  },
+];
+
+/** Core skills with the exact star ratings from the CV. */
+export const CORE_SKILLS: SkillRating[] = [
+  { name: "Computer Skills", level: 5 },
+  { name: "Troubleshooting", level: 4 },
+  { name: "Communication", level: 4 },
+  { name: "Leadership", level: 4 },
+  { name: "Programming", level: 3 },
+  { name: "Networking", level: 3 },
+];
+
+/** AI & Data focus areas (presented as tags). */
+export const FOCUS_SKILLS: string[] = [
+  "Python",
+  "Data Analysis",
+  "Machine Learning",
+  "SQL",
+  "Data Visualization",
+  "LLM Tools",
+];
+
+export const FUN: string[] = [
+  "Tinkering with hardware and electronics 🔧",
+  "Exploring Ho Chi Minh City on two wheels 🛵",
+  "Turning random datasets into charts for fun 📊",
+  "Always picking up a new tool or language 📚",
+];
