@@ -93,11 +93,15 @@ export const PROJECTS: ProjectItem[] = [
     ],
   },
   {
-    title: "POS Financial System — Thazin & Cherry",
-    meta: "2026 · School finance",
+    title: "POS & School Management System — Thazin & Cherry",
+    meta: "2026 · Next.js · Supabase",
+    tags: ["Next.js 15", "TypeScript", "Supabase", "PostgreSQL", "RLS", "Python (ETL)"],
     repo: "https://github.com/ZaidenxThiha/tc-school-mgmt",
+    demo: "https://tncengcenter.vercel.app",
     points: [
-      "Point-of-sale finance system managing payments, billing, and financial records for the English centre.",
+      "Full internal admin system for an ESL school — students, enrolment, billing & payments, scheduling, payroll, attendance, inventory, and events.",
+      "Monthly and on-demand invoice generation with a Postgres trigger that auto-reconciles invoice status when payments are recorded; CSV export and bulk actions.",
+      "Role-based access (owner / admin / accounts / readonly) enforced with Supabase Auth and Row-Level-Security policies.",
     ],
   },
   {
