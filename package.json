@@ -1,27 +1,21 @@
 {
-  "name": "ai-website-clone-template",
-  "version": "0.3.1",
+  "name": "portfolio",
+  "version": "1.0.0",
   "private": true,
-  "description": "Clone any website into a clean, modern Next.js codebase using AI coding agents",
-  "author": "JCodesMore",
+  "description": "Thiha Aung — interactive AI Engineer & Data Analyst portfolio.",
+  "author": "Thiha Aung",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JCodesMore/ai-website-cloner-template.git"
+    "url": "https://github.com/ZaidenxThiha/portfolio.git"
   },
-  "homepage": "https://github.com/JCodesMore/ai-website-cloner-template",
-  "bugs": {
-    "url": "https://github.com/JCodesMore/ai-website-cloner-template/issues"
-  },
+  "homepage": "https://zaidenthiha.vercel.app",
   "keywords": [
-    "claude-code",
-    "website-clone",
-    "reverse-engineering",
+    "portfolio",
     "nextjs",
-    "ai",
-    "template",
     "tailwindcss",
-    "shadcn-ui"
+    "ai",
+    "data-analyst"
   ],
   "engines": {
     "node": ">=24"
