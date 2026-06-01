@@ -59,10 +59,10 @@ export function Explorer({ active, onSelect, repos }: ExplorerProps) {
   return (
     <div className="mx-auto w-full max-w-3xl">
       {/* Tab bar with sliding liquid indicator */}
-      <div className="sticky top-4 z-20 mb-8 flex justify-center">
+      <div className="sticky top-4 z-20 mb-8 flex justify-center px-2">
         <div
           ref={rowRef}
-          className="relative flex max-w-full gap-1 overflow-x-auto rounded-full p-1.5 liquid-glass"
+          className="liquid-glass relative flex w-full max-w-md flex-wrap justify-center gap-1 rounded-3xl p-1.5 sm:w-auto sm:max-w-full sm:flex-nowrap sm:rounded-full"
         >
           <span
             className="liquid-indicator"
