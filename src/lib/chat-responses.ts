@@ -26,7 +26,7 @@ export function getMockResponse(query: string): string {
     return "Hey! I’m Thiha Aung — an AI Engineer and Data Analyst based in Ho Chi Minh City, and a final-year Computer Science student at Ton Duc Thang University. I love turning data into insights, building reliable AI-powered systems, and constantly learning new tech. Ask me anything! 😄";
   }
   if (q.includes("project")) {
-    return "As a final-year CS student I focus on AI and data projects — building data analysis pipelines, training ML models, and experimenting with LLM-powered tools. Earlier I built an Elevator Control System (PLC programming for floor selection and safety) and gained hands-on engineering experience as a Technical Engineer at Thazin & Cherry English Training Centre and as IT Support at FPT IS Vietnam, resolving hardware, software, and connectivity issues with minimal downtime.";
+    return "In 2026 I built two POS financial systems — one for Thazin & Cherry English Centre and one for EDUbridge Private School — handling payments, billing, and financial records. Alongside that, as a final-year CS student I focus on AI and data projects (analysis pipelines, ML models, LLM-powered tools), and earlier I built an Elevator Control System with PLC programming. Past roles include Technical Engineer at Thazin & Cherry and IT Support at FPT IS Vietnam.";
   }
   if (q.includes("skill")) {
     return "Hard skills: Python, Data Analysis, Machine Learning, SQL, AI/LLM tooling, data visualization, and general programming — plus a solid engineering base in networking and troubleshooting. Soft skills: Leadership and Communication. I’m strongest at turning messy data into clear insights and shipping reliable AI-driven solutions. 🧠";

@@ -24,7 +24,7 @@ export const ABOUT = {
   status: "Final-year Computer Science student",
   location: "Ho Chi Minh City, Vietnam",
   summary:
-    "Final-year Computer Science student at Ton Duc Thang University and an aspiring AI Engineer & Data Analyst based in Ho Chi Minh City. I started out as a Technical Engineer — diagnosing hardware, software, and network issues and keeping systems running with minimal downtime — and I’m now channeling that problem-solving mindset into machine learning, data analysis, and AI-powered tools.",
+    "Final-year Computer Science student at Ton Duc Thang University and an aspiring AI Engineer & Data Analyst based in Ho Chi Minh City. I started out as a Technical Engineer — diagnosing hardware, software, and network issues and keeping systems running with minimal downtime — and in 2026 I built two POS financial systems for Thazin & Cherry English Centre and EDUbridge Private School. I’m now channeling that problem-solving mindset into machine learning, data analysis, and AI-powered tools.",
 };
 
 export const EDUCATION: TimelineItem[] = [
@@ -52,12 +52,12 @@ export const EDUCATION: TimelineItem[] = [
 
 export const EXPERIENCE: TimelineItem[] = [
   {
-    title: "Technical Engineer",
-    org: "Thazin & Cherry English Training Centre, Mandalay",
-    period: "Jan 2020 – Jan 2023",
+    title: "Software Developer — POS Financial Systems",
+    org: "Thazin & Cherry English Centre · EDUbridge Private School",
+    period: "2026 – Present",
     points: [
-      "Diagnosed and resolved hardware, software, and connectivity issues, minimizing downtime.",
-      "Enhanced network infrastructure for reliable, day-to-day educational operations.",
+      "Designed and built two POS financial systems — one for each school — to manage payments, billing, and financial records.",
+      "Tailored each system to the institution’s workflow, streamlining day-to-day financial operations.",
     ],
   },
   {
@@ -66,15 +66,30 @@ export const EXPERIENCE: TimelineItem[] = [
     period: "Apr 2025 – Jun 2025",
     points: ["Provided technical support and troubleshooting across systems and end-users."],
   },
+  {
+    title: "Technical Engineer",
+    org: "Thazin & Cherry English Training Centre, Mandalay",
+    period: "Jan 2020 – Jan 2023",
+    points: [
+      "Diagnosed and resolved hardware, software, and connectivity issues, minimizing downtime.",
+      "Enhanced network infrastructure for reliable, day-to-day educational operations.",
+    ],
+  },
 ];
 
 export const PROJECTS: ProjectItem[] = [
   {
-    title: "Elevator Control System",
-    meta: "Technological University · PLC",
+    title: "POS Financial System — Thazin & Cherry",
+    meta: "2026 · School finance",
     points: [
-      "Programmed and tested a PLC managing floor selection and safety features.",
-      "Collaborated in a team to integrate and optimize the system for reliable performance.",
+      "Point-of-sale finance system managing payments, billing, and financial records for the English centre.",
+    ],
+  },
+  {
+    title: "POS Financial System — EDUbridge",
+    meta: "2026 · School finance",
+    points: [
+      "Tailored POS finance system for EDUbridge Private School, streamlining fee collection and record-keeping.",
     ],
   },
   {
@@ -83,6 +98,14 @@ export const PROJECTS: ProjectItem[] = [
     points: [
       "Building data-analysis pipelines and training machine-learning models.",
       "Experimenting with LLM-powered tools and data visualization.",
+    ],
+  },
+  {
+    title: "Elevator Control System",
+    meta: "Technological University · PLC",
+    points: [
+      "Programmed and tested a PLC managing floor selection and safety features.",
+      "Collaborated in a team to integrate and optimize the system for reliable performance.",
     ],
   },
 ];
