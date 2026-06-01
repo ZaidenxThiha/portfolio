@@ -11,7 +11,7 @@ interface TabCardsProps {
  *  and scrolls down to the info section. */
 export function TabCards({ active, onSelect }: TabCardsProps) {
   return (
-    <div className="mt-4 grid w-full max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-5">
+    <div className="mt-4 hidden w-full max-w-2xl gap-3 sm:grid sm:grid-cols-3 md:grid-cols-5">
       {QUICK_ACTIONS.map(({ label, icon: Icon, color }) => (
         <button
           key={label}
