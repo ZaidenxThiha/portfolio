@@ -84,10 +84,16 @@ export function Explorer({ active, onSelect, repos }: ExplorerProps) {
                 type="button"
                 onClick={() => onSelect(label)}
                 aria-pressed={isActive}
+                aria-label={label}
+                title={label}
                 className="relative z-[1] inline-flex shrink-0 items-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium transition-colors"
               >
                 <Icon size={18} color={isActive ? color : "#9ca3af"} />
-                <span className={isActive ? "text-neutral-900" : "text-neutral-500"}>
+                <span
+                  className={`hidden sm:inline ${
+                    isActive ? "text-neutral-900" : "text-neutral-500"
+                  }`}
+                >
                   {label}
                 </span>
               </button>
