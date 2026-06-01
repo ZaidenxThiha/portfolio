@@ -11,6 +11,9 @@ export interface ProjectItem {
   title: string;
   meta?: string;
   points: string[];
+  tags?: string[];
+  repo?: string;
+  demo?: string;
 }
 
 export interface SkillRating {
@@ -79,6 +82,17 @@ export const EXPERIENCE: TimelineItem[] = [
 
 export const PROJECTS: ProjectItem[] = [
   {
+    title: "Student Dropout Prediction & Alert System",
+    meta: "Educational Data Mining · ML",
+    tags: ["Python", "scikit-learn", "XGBoost", "SHAP", "Streamlit", "Pandas"],
+    repo: "https://github.com/ZaidenxThiha/Student-Dropout-Prediction-and-Alert-System",
+    points: [
+      "Early-warning dashboard combining two ML models — academic pass/fail (Random Forest on UCI Student Performance) and dropout risk (XGBoost on OULA engagement data).",
+      "Generates SHAP-based explanations for every prediction and produces parent-facing alert notifications.",
+      "Interactive Streamlit dashboard with KPIs, ROC/threshold tuning, and a what-if simulator.",
+    ],
+  },
+  {
     title: "POS Financial System — Thazin & Cherry",
     meta: "2026 · School finance",
     points: [
@@ -90,14 +104,6 @@ export const PROJECTS: ProjectItem[] = [
     meta: "2026 · School finance",
     points: [
       "Tailored POS finance system for EDUbridge Private School, streamlining fee collection and record-keeping.",
-    ],
-  },
-  {
-    title: "AI & Data Explorations",
-    meta: "Ongoing · CS studies",
-    points: [
-      "Building data-analysis pipelines and training machine-learning models.",
-      "Experimenting with LLM-powered tools and data visualization.",
     ],
   },
   {

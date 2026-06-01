@@ -9,8 +9,9 @@ import { Wordmark } from "@/components/Wordmark";
 import { Reveal } from "@/components/Reveal";
 import { TabCards } from "@/components/portfolio/TabCards";
 import { Explorer } from "@/components/portfolio/Explorer";
+import type { RepoCard } from "@/lib/github";
 
-export function PortfolioShell() {
+export function PortfolioShell({ repos }: { repos: RepoCard[] }) {
   const [active, setActive] = useState("Me");
 
   function scrollToExplore() {
@@ -59,7 +60,7 @@ export function PortfolioShell() {
           </p>
         </Reveal>
         <Reveal delay={100}>
-          <Explorer active={active} onSelect={setActive} />
+          <Explorer active={active} onSelect={setActive} repos={repos} />
         </Reveal>
       </section>
     </>

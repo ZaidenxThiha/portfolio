@@ -9,6 +9,7 @@ import {
   MapPin,
   Sparkles,
   ArrowUpRight,
+  Star,
 } from "lucide-react";
 import { QUICK_ACTIONS } from "@/lib/quick-actions";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
@@ -21,14 +22,17 @@ import {
   FOCUS_SKILLS,
   FUN,
   type TimelineItem,
+  type ProjectItem,
 } from "@/lib/portfolio";
+import type { RepoCard } from "@/lib/github";
 
 interface ExplorerProps {
   active: string;
   onSelect: (label: string) => void;
+  repos: RepoCard[];
 }
 
-export function Explorer({ active, onSelect }: ExplorerProps) {
+export function Explorer({ active, onSelect, repos }: ExplorerProps) {
   const rowRef = useRef<HTMLDivElement>(null);
   const btnRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const [indicator, setIndicator] = useState({ left: 0, top: 0, width: 0, height: 0 });
@@ -99,7 +103,7 @@ export function Explorer({ active, onSelect }: ExplorerProps) {
         style={{ borderTopColor: accent }}
       >
         {active === "Me" && <MePanel />}
-        {active === "Projects" && <ProjectsPanel />}
+        {active === "Projects" && <ProjectsPanel repos={repos} />}
         {active === "Skills" && <SkillsPanel accent={accent} />}
         {active === "Fun" && <FunPanel />}
         {active === "Contact" && <ContactPanel accent={accent} />}
@@ -143,31 +147,121 @@ function MePanel() {
   );
 }
 
-function ProjectsPanel() {
+function ProjectCard({ p }: { p: ProjectItem }) {
+  return (
+    <div className="flex flex-col rounded-2xl bg-neutral-50 p-5">
+      <h3 className="font-semibold">{p.title}</h3>
+      {p.meta && <p className="mt-0.5 text-xs text-neutral-500">{p.meta}</p>}
+      <ul className="mt-3 list-disc space-y-1.5 pl-4 text-sm text-neutral-700">
+        {p.points.map((pt) => (
+          <li key={pt}>{pt}</li>
+        ))}
+      </ul>
+      {p.tags && p.tags.length > 0 && (
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {p.tags.map((t) => (
+            <span
+              key={t}
+              className="rounded-full bg-white px-2.5 py-0.5 text-xs font-medium text-neutral-600 ring-1 ring-neutral-200"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      )}
+      {(p.repo || p.demo) && (
+        <div className="mt-4 flex flex-wrap gap-3 text-sm font-medium">
+          {p.repo && (
+            <a
+              href={p.repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-neutral-700 hover:text-neutral-900"
+            >
+              <GithubIcon className="h-4 w-4" /> Code
+            </a>
+          )}
+          {p.demo && (
+            <a
+              href={p.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-[#0171E3] hover:underline"
+            >
+              <ArrowUpRight className="h-4 w-4" /> Live demo
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ProjectsPanel({ repos }: { repos: RepoCard[] }) {
   return (
     <div className="flex flex-col gap-6">
       <div>
         <PanelHeading>Projects</PanelHeading>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+        <div className="mt-4 grid items-start gap-4 sm:grid-cols-2">
           {PROJECTS.map((p) => (
-            <div key={p.title} className="rounded-2xl bg-neutral-50 p-5">
-              <h3 className="font-semibold">{p.title}</h3>
-              {p.meta && <p className="mt-0.5 text-xs text-neutral-500">{p.meta}</p>}
-              <ul className="mt-3 list-disc space-y-1.5 pl-4 text-sm text-neutral-700">
-                {p.points.map((pt) => (
-                  <li key={pt}>{pt}</li>
-                ))}
-              </ul>
-            </div>
+            <ProjectCard key={p.title} p={p} />
           ))}
         </div>
       </div>
+
       <div>
         <h3 className="mb-3 inline-flex items-center gap-2 text-lg font-semibold">
           <Briefcase className="h-5 w-5 text-neutral-500" /> Experience
         </h3>
         <Timeline items={EXPERIENCE} />
       </div>
+
+      {repos.length > 0 && (
+        <div>
+          <h3 className="mb-3 inline-flex items-center gap-2 text-lg font-semibold">
+            <GithubIcon className="h-5 w-5 text-neutral-500" /> More on GitHub
+          </h3>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {repos.map((r) => (
+              <a
+                key={r.name}
+                href={r.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col rounded-xl bg-neutral-50 p-4 transition-colors hover:bg-neutral-100"
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-medium text-neutral-900">{r.title}</span>
+                  <ArrowUpRight className="h-4 w-4 shrink-0 text-neutral-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </div>
+                {r.description && (
+                  <p className="mt-1 line-clamp-2 text-sm text-neutral-600">{r.description}</p>
+                )}
+                <div className="mt-3 flex items-center gap-3 text-xs text-neutral-500">
+                  {r.language && (
+                    <span className="inline-flex items-center gap-1">
+                      <span className="h-2.5 w-2.5 rounded-full bg-[#0171E3]" /> {r.language}
+                    </span>
+                  )}
+                  {r.stars > 0 && (
+                    <span className="inline-flex items-center gap-1">
+                      <Star className="h-3 w-3" /> {r.stars}
+                    </span>
+                  )}
+                </div>
+              </a>
+            ))}
+          </div>
+          <a
+            href="https://github.com/ZaidenxThiha?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-[#0171E3] hover:underline"
+          >
+            View all repositories <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </div>
+      )}
     </div>
   );
 }
@@ -280,7 +374,108 @@ function ContactPanel({ accent }: { accent: string }) {
           );
         })}
       </div>
+
+      <ContactForm accent={accent} />
     </div>
+  );
+}
+
+function ContactForm({ accent }: { accent: string }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  const key = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!name.trim() || !email.trim() || !message.trim()) return;
+
+    // No form backend configured → fall back to opening the user's mail client.
+    if (!key) {
+      const body = encodeURIComponent(`From: ${name} <${email}>\n\n${message}`);
+      window.location.href = `mailto:gghex645@gmail.com?subject=${encodeURIComponent(
+        `Portfolio message from ${name}`,
+      )}&body=${body}`;
+      return;
+    }
+
+    setStatus("sending");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: key,
+          subject: `Portfolio message from ${name}`,
+          name,
+          email,
+          message,
+        }),
+      });
+      setStatus(res.ok ? "sent" : "error");
+      if (res.ok) {
+        setName("");
+        setEmail("");
+        setMessage("");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "sent") {
+    return (
+      <div className="mt-6 rounded-2xl bg-neutral-50 p-6 text-center">
+        <p className="font-medium text-neutral-900">Thanks for reaching out! 🎉</p>
+        <p className="mt-1 text-sm text-neutral-600">I’ll get back to you soon.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-3">
+      <h3 className="font-semibold text-neutral-900">Send me a message</h3>
+      <div className="grid gap-3 sm:grid-cols-2">
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+          placeholder="Your name"
+          className="rounded-xl border border-neutral-200 bg-white/70 px-4 py-2.5 text-sm outline-none focus:border-neutral-400"
+        />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          placeholder="Your email"
+          className="rounded-xl border border-neutral-200 bg-white/70 px-4 py-2.5 text-sm outline-none focus:border-neutral-400"
+        />
+      </div>
+      <textarea
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        required
+        rows={4}
+        placeholder="Your message"
+        className="resize-none rounded-xl border border-neutral-200 bg-white/70 px-4 py-2.5 text-sm outline-none focus:border-neutral-400"
+      />
+      <div className="flex items-center gap-3">
+        <button
+          type="submit"
+          disabled={status === "sending"}
+          className="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium text-white transition-opacity disabled:opacity-60"
+          style={{ background: accent }}
+        >
+          {status === "sending" ? "Sending…" : "Send message"}
+        </button>
+        {status === "error" && (
+          <span className="text-sm text-red-500">Something went wrong — try again.</span>
+        )}
+      </div>
+    </form>
   );
 }
 
