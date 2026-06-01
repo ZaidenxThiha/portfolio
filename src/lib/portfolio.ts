@@ -95,6 +95,7 @@ export const PROJECTS: ProjectItem[] = [
   {
     title: "POS Financial System — Thazin & Cherry",
     meta: "2026 · School finance",
+    repo: "https://github.com/ZaidenxThiha/tc-school-mgmt",
     points: [
       "Point-of-sale finance system managing payments, billing, and financial records for the English centre.",
     ],

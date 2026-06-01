@@ -25,7 +25,6 @@ const FEATURED: Record<string, string> = {
   "Traffic-analysis-heatmap": "Traffic Analysis Heatmap",
   "523K0073_523K0078_Midterm": "MLP vs RNN Comparison",
   Skipgram_MIdtermProject: "Skip-gram Word Embeddings",
-  "Student-Performance-Prediction-System": "Student Performance Prediction",
   DIP_final: "Digital Image Processing",
   SE_final_project: "Electronics Online Store",
 };
@@ -35,7 +34,6 @@ const DESCRIPTIONS: Record<string, string> = {
   "Traffic-analysis-heatmap": "Traffic analysis heatmap built with YOLO object detection.",
   "523K0073_523K0078_Midterm": "Comparing Multi-Layer Perceptrons and Recurrent Networks (RNNs).",
   Skipgram_MIdtermProject: "Skip-gram word2vec word-embedding model.",
-  "Student-Performance-Prediction-System": "ML system predicting student academic performance.",
   DIP_final: "Digital Image Processing final project.",
   SE_final_project: "Electronics online store — software-engineering project.",
 };
