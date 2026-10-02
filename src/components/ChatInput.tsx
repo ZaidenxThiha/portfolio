@@ -18,7 +18,7 @@ export function ChatInput() {
 
   return (
     <form onSubmit={onSubmit} className="relative w-full max-w-lg">
-      <div className="liquid-glass mx-auto flex items-center rounded-full py-2.5 pr-2 pl-6">
+      <div className="liquid-glass mx-auto flex items-center rounded-full py-2.5 pr-2 pl-6 transition-shadow focus-within:shadow-lg focus-within:shadow-neutral-300/40">
         <input
           type="text"
           value={value}
@@ -30,7 +30,7 @@ export function ChatInput() {
           type="submit"
           disabled={!value.trim()}
           aria-label="Submit question"
-          className="flex items-center justify-center rounded-full bg-[#0171E3] p-2.5 text-white transition-colors hover:bg-blue-600 disabled:opacity-70"
+          className="flex items-center justify-center rounded-full bg-[#0171E3] p-2.5 text-white transition-all hover:bg-blue-600 hover:scale-105 disabled:opacity-70 disabled:hover:scale-100"
         >
           <ArrowRight className="h-5 w-5" />
         </button>

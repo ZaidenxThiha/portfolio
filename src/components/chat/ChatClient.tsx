@@ -37,8 +37,6 @@ export function ChatClient() {
     }, 1200);
   }
 
-  // Fire the query that came from the landing page once (deferred so we don't
-  // call setState synchronously inside the effect body).
   useEffect(() => {
     if (handledInitial.current || !initialQuery) return;
     handledInitial.current = true;
@@ -64,25 +62,41 @@ export function ChatClient() {
 
       {/* Messages */}
       <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-6 px-4 py-6">
+        {messages.length === 0 && !thinking && (
+          <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
+            <p className="text-lg font-medium text-neutral-400">Ask me anything</p>
+            <p className="text-sm text-neutral-400">Tap a quick question below to get started</p>
+          </div>
+        )}
         {messages.map((m, i) =>
           m.role === "user" ? (
             <div key={m.id} className="flex justify-end">
-              <div className="max-w-[80%] rounded-3xl bg-[#0171E3] px-5 py-2.5 text-white">
+              <div className="max-w-[80%] rounded-3xl bg-[#0171E3] px-5 py-2.5 text-white shadow-sm shadow-blue-500/20">
                 {m.content}
               </div>
             </div>
           ) : (
-            <div key={m.id} className="flex flex-col gap-4">
-              {isContactQuery(messages[i - 1]?.content ?? "") ? <ContactCard /> : null}
-              <p className="leading-relaxed text-neutral-900">{m.content}</p>
+            <div key={m.id} className="flex gap-3">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-neutral-100 ring-1 ring-neutral-200">
+                <span className="text-sm font-bold text-neutral-500">T</span>
+              </div>
+              <div className="flex flex-1 flex-col gap-4 pt-1">
+                {isContactQuery(messages[i - 1]?.content ?? "") && <ContactCard />}
+                <p className="leading-relaxed text-neutral-900">{m.content}</p>
+              </div>
             </div>
           ),
         )}
         {thinking ? (
-          <div className="flex gap-1.5 px-1 py-2">
-            <span className="h-2 w-2 animate-bounce rounded-full bg-neutral-400 [animation-delay:-0.3s]" />
-            <span className="h-2 w-2 animate-bounce rounded-full bg-neutral-400 [animation-delay:-0.15s]" />
-            <span className="h-2 w-2 animate-bounce rounded-full bg-neutral-400" />
+          <div className="flex gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-neutral-100 ring-1 ring-neutral-200">
+              <span className="text-sm font-bold text-neutral-500">T</span>
+            </div>
+            <div className="flex gap-1.5 px-1 py-3">
+              <span className="h-2 w-2 animate-bounce rounded-full bg-neutral-400 [animation-delay:-0.3s]" />
+              <span className="h-2 w-2 animate-bounce rounded-full bg-neutral-400 [animation-delay:-0.15s]" />
+              <span className="h-2 w-2 animate-bounce rounded-full bg-neutral-400" />
+            </div>
           </div>
         ) : null}
         <div ref={endRef} />
@@ -128,13 +142,13 @@ export function ChatClient() {
 
         <form
           onSubmit={onSubmit}
-          className="flex items-center rounded-full bg-neutral-100 py-2 pr-2 pl-6"
+          className="liquid-glass flex items-center rounded-full py-2 pr-2 pl-6"
         >
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask me anything"
-            className="text-md w-full border-none bg-transparent text-black placeholder:text-gray-500 focus:outline-none"
+            className="text-md w-full border-none bg-transparent text-neutral-800 placeholder:text-neutral-500 focus:outline-none"
           />
           <button
             type="submit"

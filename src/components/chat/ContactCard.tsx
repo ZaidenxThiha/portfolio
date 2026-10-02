@@ -4,14 +4,14 @@ import { PERSONA } from "@/lib/chat-responses";
 /** The "Contacts" card rendered for contact-related queries. */
 export function ContactCard() {
   return (
-    <div className="w-full rounded-2xl bg-neutral-100 p-8">
+    <div className="w-full rounded-2xl bg-neutral-100 p-8 transition-shadow hover:shadow-md hover:shadow-neutral-200/50">
       <div className="flex items-start justify-between">
         <h2 className="text-3xl font-bold tracking-tight">Contacts</h2>
         <span className="text-base text-neutral-800">{PERSONA.handle}</span>
       </div>
       <a
         href={`mailto:${PERSONA.email}`}
-        className="mt-8 inline-flex items-center gap-1 text-lg font-medium text-[#0171E3] hover:underline"
+        className="mt-8 inline-flex items-center gap-1 text-lg font-medium text-[#0171E3] transition-colors hover:underline"
       >
         {PERSONA.email}
         <ChevronRight className="h-4 w-4" />

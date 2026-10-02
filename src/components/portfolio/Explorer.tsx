@@ -10,6 +10,7 @@ import {
   Sparkles,
   ArrowUpRight,
   Star,
+  Calendar,
 } from "lucide-react";
 import { QUICK_ACTIONS } from "@/lib/quick-actions";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
@@ -155,9 +156,11 @@ function MePanel() {
 
 function ProjectCard({ p }: { p: ProjectItem }) {
   return (
-    <div className="flex flex-col rounded-2xl bg-neutral-50 p-5">
-      <h3 className="font-semibold">{p.title}</h3>
-      {p.meta && <p className="mt-0.5 text-xs text-neutral-500">{p.meta}</p>}
+    <div className="group flex flex-col rounded-2xl bg-neutral-50 p-5 transition-all duration-300 hover:bg-white hover:shadow-lg hover:shadow-neutral-200/60">
+      <h3 className="font-semibold text-neutral-900">{p.title}</h3>
+      {p.meta && (
+        <p className="mt-0.5 text-xs font-medium text-neutral-400">{p.meta}</p>
+      )}
       <ul className="mt-3 list-disc space-y-1.5 pl-4 text-sm text-neutral-700">
         {p.points.map((pt) => (
           <li key={pt}>{pt}</li>
@@ -182,7 +185,7 @@ function ProjectCard({ p }: { p: ProjectItem }) {
               href={p.repo}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-neutral-700 hover:text-neutral-900"
+              className="inline-flex items-center gap-1.5 text-neutral-700 transition-colors hover:text-neutral-900"
             >
               <GithubIcon className="h-4 w-4" /> Code
             </a>
@@ -192,7 +195,7 @@ function ProjectCard({ p }: { p: ProjectItem }) {
               href={p.demo}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-[#0171E3] hover:underline"
+              className="inline-flex items-center gap-1.5 text-[#0171E3] transition-colors hover:underline"
             >
               <ArrowUpRight className="h-4 w-4" /> Live demo
             </a>
@@ -234,7 +237,7 @@ function ProjectsPanel({ repos }: { repos: RepoCard[] }) {
                 href={r.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col rounded-xl bg-neutral-50 p-4 transition-colors hover:bg-neutral-100"
+                className="group flex flex-col rounded-xl bg-neutral-50 p-4 transition-all duration-300 hover:bg-white hover:shadow-md hover:shadow-neutral-200/50"
               >
                 <div className="flex items-center justify-between gap-2">
                   <span className="font-medium text-neutral-900">{r.title}</span>
@@ -262,7 +265,7 @@ function ProjectsPanel({ repos }: { repos: RepoCard[] }) {
             href="https://github.com/ZaidenxThiha?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-[#0171E3] hover:underline"
+            className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-[#0171E3] transition-colors hover:underline"
           >
             View all repositories <ArrowUpRight className="h-4 w-4" />
           </a>
@@ -306,7 +309,7 @@ function SkillsPanel({ accent }: { accent: string }) {
           {FOCUS_SKILLS.map((f) => (
             <span
               key={f}
-              className="rounded-full border border-neutral-200 bg-white/60 px-3.5 py-1.5 text-sm font-medium text-neutral-700"
+              className="rounded-full border border-neutral-200 bg-white/60 px-3.5 py-1.5 text-sm font-medium text-neutral-700 transition-colors hover:border-neutral-300 hover:bg-white"
             >
               {f}
             </span>
@@ -325,7 +328,7 @@ function FunPanel() {
         {FUN.map((f) => (
           <div
             key={f}
-            className="rounded-2xl bg-neutral-50 px-5 py-4 text-neutral-700"
+            className="rounded-2xl bg-neutral-50 px-5 py-4 text-neutral-700 transition-colors hover:bg-neutral-100"
           >
             {f}
           </div>
@@ -347,20 +350,20 @@ function ContactPanel({ accent }: { accent: string }) {
     <div>
       <PanelHeading>Get in touch</PanelHeading>
       <p className="mt-3 text-neutral-600">
-        I’m open to opportunities and collaborations — reach out anytime.
+        I&apos;m open to opportunities and collaborations — reach out anytime.
       </p>
       <div className="mt-5 divide-y divide-neutral-100">
         {items.map(({ icon: Icon, label, value, href }) => {
           const inner = (
             <>
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-100">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-100 transition-colors group-hover:bg-neutral-200">
                 <Icon className="h-[18px] w-[18px]" style={{ color: accent }} />
               </span>
               <span className="flex flex-col">
                 <span className="text-xs text-neutral-400">{label}</span>
                 <span className="font-medium text-neutral-800">{value}</span>
               </span>
-              {href && <ArrowUpRight className="ml-auto h-4 w-4 text-neutral-400" />}
+              {href && <ArrowUpRight className="ml-auto h-4 w-4 text-neutral-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />}
             </>
           );
           return href ? (
@@ -369,12 +372,12 @@ function ContactPanel({ accent }: { accent: string }) {
               href={href}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel="noopener noreferrer"
-              className="flex items-center gap-3 py-3 transition-colors hover:text-neutral-900"
+              className="group flex items-center gap-3 py-3 transition-colors hover:text-neutral-900"
             >
               {inner}
             </a>
           ) : (
-            <div key={label} className="flex items-center gap-3 py-3">
+            <div key={label} className="group flex items-center gap-3 py-3">
               {inner}
             </div>
           );
@@ -388,11 +391,14 @@ function Timeline({ items }: { items: TimelineItem[] }) {
   return (
     <div className="space-y-5">
       {items.map((item) => (
-        <div key={`${item.title}-${item.org}`} className="border-l-2 border-neutral-200 pl-4">
+        <div key={`${item.title}-${item.org}`} className="relative border-l-2 border-neutral-200 pl-4 transition-colors hover:border-neutral-400">
+          <div className="absolute -left-[5px] top-1 h-2 w-2 rounded-full bg-neutral-300 ring-2 ring-white transition-colors hover:bg-neutral-500" />
           <div className="flex flex-wrap items-baseline justify-between gap-x-3">
             <h4 className="font-semibold text-neutral-900">{item.title}</h4>
             {item.period && (
-              <span className="text-xs text-neutral-400">{item.period}</span>
+              <span className="inline-flex items-center gap-1 text-xs text-neutral-400">
+                <Calendar className="h-3 w-3" /> {item.period}
+              </span>
             )}
           </div>
           <p className="text-sm text-neutral-600">{item.org}</p>

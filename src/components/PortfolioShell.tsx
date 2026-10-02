@@ -9,6 +9,7 @@ import { Wordmark } from "@/components/Wordmark";
 import { Reveal } from "@/components/Reveal";
 import { TabCards } from "@/components/portfolio/TabCards";
 import { Explorer } from "@/components/portfolio/Explorer";
+import { QUICK_ACTIONS } from "@/lib/quick-actions";
 import type { RepoCard } from "@/lib/github";
 
 export function PortfolioShell({ repos }: { repos: RepoCard[] }) {
@@ -28,24 +29,44 @@ export function PortfolioShell({ repos }: { repos: RepoCard[] }) {
       {/* Hero — full viewport */}
       <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pt-20 pb-24">
         <Wordmark />
-        <div className="animate-fade-up">
-          <Hero />
-        </div>
+        <Hero />
         <div className="animate-fade-up [animation-delay:120ms]">
           <HeroMemoji />
         </div>
-        <div className="z-10 mt-4 flex w-full animate-fade-up flex-col items-center justify-center [animation-delay:240ms] md:px-0">
+        <div className="z-10 mt-6 flex w-full animate-fade-up flex-col items-center justify-center [animation-delay:240ms] md:px-0">
           <ChatInput />
           <TabCards active={active} onSelect={select} />
+          {/* Mobile tab cards — horizontal scroll row */}
+          <div className="mt-4 flex w-full max-w-lg gap-2.5 overflow-x-auto px-1 pb-1 sm:hidden">
+            {QUICK_ACTIONS.map(({ label, icon: Icon, color }) => (
+              <button
+                key={label}
+                type="button"
+                onClick={() => select(label)}
+                aria-pressed={active === label}
+                className={`liquid-glass flex h-[64px] w-[64px] shrink-0 flex-col items-center justify-center gap-1 rounded-2xl ${
+                  active === label ? "liquid-glass--active" : ""
+                }`}
+              >
+                <Icon size={20} color={color} />
+                <span className="text-[10px] font-medium text-gray-700">{label}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         <button
           type="button"
           onClick={scrollToExplore}
           aria-label="Scroll to explore"
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-neutral-400 transition-colors hover:text-neutral-700"
+          className="group absolute bottom-8 left-1/2 -translate-x-1/2 text-neutral-400 transition-colors hover:text-neutral-700"
         >
-          <ChevronDown className="animate-bob h-7 w-7" />
+          <span className="flex flex-col items-center gap-1">
+            <span className="text-xs font-medium tracking-wide opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              Explore
+            </span>
+            <ChevronDown className="animate-bob h-6 w-6" />
+          </span>
         </button>
       </section>
 
@@ -63,6 +84,14 @@ export function PortfolioShell({ repos }: { repos: RepoCard[] }) {
           <Explorer active={active} onSelect={setActive} repos={repos} />
         </Reveal>
       </section>
+
+      {/* Footer */}
+      <footer className="relative z-10 border-t border-neutral-200/60 px-4 py-8">
+        <div className="mx-auto flex max-w-3xl flex-col items-center justify-between gap-3 text-sm text-neutral-400 sm:flex-row">
+          <p>Thiha Aung — AI Engineer &amp; Data Analyst</p>
+          <p>Ho Chi Minh City, Vietnam</p>
+        </div>
+      </footer>
     </>
   );
 }
